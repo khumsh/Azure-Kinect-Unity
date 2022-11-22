@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using UnityEditor.Animations;
 
 
@@ -10,11 +11,13 @@ public class RecordTransformHierarchy : MonoBehaviour
     private GameObjectRecorder m_Recorder;
 
     private bool recording;
+    private Animator anim;
 
     void Start()
     {
         recording = false;
 
+        anim = GetComponent<Animator>();
         // // Create recorder and record the script GameObject.
         // m_Recorder = new GameObjectRecorder(gameObject);
 
@@ -64,5 +67,10 @@ public class RecordTransformHierarchy : MonoBehaviour
 
         Debug.Log("Recording Start");
 
+    }
+
+    public void PlayAnimation()
+    {
+        anim.SetTrigger("Play");
     }
 }
