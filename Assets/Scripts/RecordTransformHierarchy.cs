@@ -34,7 +34,7 @@ public class RecordTransformHierarchy : MonoBehaviour
         m_Recorder.TakeSnapshot(Time.deltaTime);
     }
 
-    void OnDisable()
+    public void OnDisable()
     {
         if (clip == null)
             return;
@@ -46,7 +46,10 @@ public class RecordTransformHierarchy : MonoBehaviour
         {
             // Save the recorded session to the clip.
             m_Recorder.SaveToClip(clip);
+
+            Debug.Log("Save Clip");
         }
+
     }
 
     public void RecordStartButton()
@@ -58,5 +61,8 @@ public class RecordTransformHierarchy : MonoBehaviour
 
         // Bind all the Transforms on the GameObject and all its children.
         m_Recorder.BindComponentsOfType<Transform>(gameObject, true);
+
+        Debug.Log("Recording Start");
+
     }
 }
