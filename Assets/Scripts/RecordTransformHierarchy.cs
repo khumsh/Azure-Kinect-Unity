@@ -6,7 +6,9 @@ using UnityEditor.Animations;
 // https://docs.unity3d.com/2020.1/Documentation/ScriptReference/Animations.GameObjectRecorder.html
 public class RecordTransformHierarchy : MonoBehaviour
 {
-    public AnimationClip clip;
+    public AnimationClip recordClip;
+
+    public AnimationClip squatClip;
 
     private GameObjectRecorder m_Recorder;
 
@@ -20,14 +22,14 @@ public class RecordTransformHierarchy : MonoBehaviour
         anim = GetComponent<Animator>();
         // // Create recorder and record the script GameObject.
         // m_Recorder = new GameObjectRecorder(gameObject);
-
+        
         // // Bind all the Transforms on the GameObject and all its children.
         // m_Recorder.BindComponentsOfType<Transform>(gameObject, true);
     }
 
     void LateUpdate()
     {
-        if (clip == null)
+        if (recordClip == null)
             return;
         
         if (!recording)
@@ -39,7 +41,7 @@ public class RecordTransformHierarchy : MonoBehaviour
 
     public void OnDisable()
     {
-        if (clip == null)
+        if (recordClip == null)
             return;
 
         if (!recording)
@@ -47,10 +49,10 @@ public class RecordTransformHierarchy : MonoBehaviour
 
         if (m_Recorder.isRecording)
         {
-            // Save the recorded session to the clip.
-            m_Recorder.SaveToClip(clip);
+            // Save the recorded session to the recordClip.
+            m_Recorder.SaveToClip(recordClip);
 
-            Debug.Log("Save Clip");
+            Debug.Log("Save recordClip");
         }
 
     }
@@ -71,6 +73,8 @@ public class RecordTransformHierarchy : MonoBehaviour
 
     public void PlayAnimation()
     {
+        anim.enabled = true;
         anim.SetTrigger("Play");
     }
+
 }

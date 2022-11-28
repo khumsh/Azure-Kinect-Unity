@@ -45,6 +45,8 @@ public class main : MonoBehaviour
 
     public void CameraStartButton()
     {
+        m_tracker.GetComponent<Animator>().enabled = false;
+
         camera_start = true;
 
         //tracker ids needed for when there are two trackers
