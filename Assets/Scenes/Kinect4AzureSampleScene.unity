@@ -2357,7 +2357,7 @@ GameObject:
   - component: {fileID: 522368196}
   m_Layer: 0
   m_Name: Main
-  m_TagString: Untagged
+  m_TagString: Main
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2390,6 +2390,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_tracker: {fileID: 210279052}
+  camera_start: 0
 --- !u!114 &522368196
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8773,6 +8774,23 @@ PrefabInstance:
       propertyPath: m_PresetInfoIsWorld
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114778957838386506, guid: ddb963bcde7d8a04a88b3ee4709f46c7,
+        type: 3}
+      propertyPath: additionalButtonPrefab.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114778957838386506, guid: ddb963bcde7d8a04a88b3ee4709f46c7,
+        type: 3}
+      propertyPath: additionalButtonPrefab.Array.data[0]
+      value: 
+      objectReference: {fileID: 224949956480874824, guid: 0c9c5421628459c40bcb3f880e0423e0,
+        type: 3}
+    - target: {fileID: 114778957838386506, guid: ddb963bcde7d8a04a88b3ee4709f46c7,
+        type: 3}
+      propertyPath: additionalButtonPrefab.Array.data[1]
+      value: 
+      objectReference: {fileID: 224949956480874824, guid: c89a0091e20ced74395d1133a5539d7b,
+        type: 3}
     - target: {fileID: 224586678184848430, guid: ddb963bcde7d8a04a88b3ee4709f46c7,
         type: 3}
       propertyPath: m_Pivot.x
@@ -8893,7 +8911,7 @@ GameObject:
   - component: {fileID: 2061024299}
   m_Layer: 0
   m_Name: Kinect4AzureTracker Copy
-  m_TagString: Untagged
+  m_TagString: tracker
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

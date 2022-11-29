@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1536
     height: 772.8
   m_ShowMode: 4
-  m_Title: Project
+  m_Title: Game
   m_RootView: {fileID: 2}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -120,7 +120,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 6748
+  controlID: 9697
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -145,7 +145,7 @@ MonoBehaviour:
   m_MinSize: {x: 100, y: 200}
   m_MaxSize: {x: 8096, y: 16192}
   vertical: 1
-  controlID: 6833
+  controlID: 9698
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -224,7 +224,7 @@ MonoBehaviour:
   m_MinSize: {x: 100, y: 200}
   m_MaxSize: {x: 8096, y: 16192}
   vertical: 1
-  controlID: 6749
+  controlID: 9631
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -301,7 +301,7 @@ MonoBehaviour:
   m_MinSize: {x: 100, y: 200}
   m_MaxSize: {x: 8096, y: 16192}
   vertical: 1
-  controlID: 6798
+  controlID: 9692
 --- !u!114 &13
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -481,8 +481,8 @@ MonoBehaviour:
       floating: 0
       collapsed: 0
       displayed: 1
-      snapOffset: {x: 0, y: 0}
-      snapOffsetDelta: {x: -100, y: -25.600006}
+      snapOffset: {x: -100, y: -25.600006}
+      snapOffsetDelta: {x: 0, y: 0}
       snapCorner: 3
       id: Tool Settings
       index: 0
@@ -492,9 +492,9 @@ MonoBehaviour:
       floating: 0
       collapsed: 0
       displayed: 1
-      snapOffset: {x: -141, y: 149}
+      snapOffset: {x: -141, y: -175.79999}
       snapOffsetDelta: {x: 0, y: 0}
-      snapCorner: 1
+      snapCorner: 3
       id: unity-grid-and-snap-toolbar
       index: 1
       layout: 1
@@ -503,7 +503,7 @@ MonoBehaviour:
       floating: 0
       collapsed: 0
       displayed: 1
-      snapOffset: {x: 0, y: 0}
+      snapOffset: {x: 0, y: 24.8}
       snapOffsetDelta: {x: 0, y: 0}
       snapCorner: 0
       id: unity-scene-view-toolbar
@@ -673,9 +673,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 1.155, y: 0.888, z: 3}
+    m_Target: {x: 0, y: 2.221, z: 3}
     speed: 2
-    m_Value: {x: 1.155, y: 0.888, z: 3}
+    m_Value: {x: 0, y: 2.221, z: 3}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -726,9 +726,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0.045613624, y: 0.95259976, z: -0.24040964, w: 0.18073665}
   m_Size:
-    m_Target: 0.02375881
+    m_Target: 0.5583972
     speed: 2
-    m_Value: 0.02375881
+    m_Value: 0.5583972
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -814,6 +814,7 @@ MonoBehaviour:
   m_ViewTransforms:
     m_KeySerializationHelper:
     - {fileID: 6881239969447822143, guid: 7cb1e7a6ef98dc1419eb9f39e0dd2100, type: 2}
+    - {fileID: -4697963751133450751, guid: 5332ab6b4cc0c4647be1cbc26b4420ef, type: 2}
     m_ValueSerializationHelper:
     - e00: 0.64479506
       e01: 0
@@ -831,11 +832,27 @@ MonoBehaviour:
       e31: 0
       e32: 0
       e33: 1
+    - e00: 1
+      e01: 0
+      e02: 0
+      e03: 0
+      e10: 0
+      e11: 1
+      e12: 0
+      e13: 0
+      e20: 0
+      e21: 0
+      e22: 1
+      e23: 0
+      e30: 0
+      e31: 0
+      e32: 0
+      e33: 1
   m_PreviewAnimator: {fileID: 0}
-  m_AnimatorController: {fileID: 9100000, guid: 7cb1e7a6ef98dc1419eb9f39e0dd2100,
+  m_AnimatorController: {fileID: 9100000, guid: 5332ab6b4cc0c4647be1cbc26b4420ef,
     type: 2}
   m_BreadCrumbs:
-  - m_Target: {fileID: 6881239969447822143, guid: 7cb1e7a6ef98dc1419eb9f39e0dd2100,
+  - m_Target: {fileID: -4697963751133450751, guid: 5332ab6b4cc0c4647be1cbc26b4420ef,
       type: 2}
     m_ScrollPosition: {x: 0, y: 0}
   stateMachineGraph: {fileID: 0}
@@ -881,9 +898,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 
-      m_LastClickedID: 0
-      m_ExpandedIDs: 90cdffff86d2ffff94dcffff1eeaffff28eaffffa6ecffffa8ecffffdeefffffc2f8ffff2efbffff
+      m_SelectedIDs: 4c650000
+      m_LastClickedID: 25932
+      m_ExpandedIDs: 86f8ffff2efbffffaa630000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -949,22 +966,22 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scenes
+    - Assets/Oculus/SampleFramework/Usage/DebugUI
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 16
   m_LastFolders:
-  - Assets/Scenes
+  - Assets/Oculus/SampleFramework/Usage/DebugUI
   m_LastFoldersGridSize: 16
   m_LastProjectPath: D:\Unity Projects\Azure-Kinect-Unity
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 22660000
-    m_LastClickedID: 26146
-    m_ExpandedIDs: 00000000da65000096700000a0700000a67000000c71000000ca9a3b
+    scrollPos: {x: 0, y: 279}
+    m_SelectedIDs: 026b0000
+    m_LastClickedID: 27394
+    m_ExpandedIDs: 00000000486a00004a6a00004c6a00004e6a0000506a00008e6a000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -992,7 +1009,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000da65000096700000a0700000a67000000c71000000ca9a3b
+    m_ExpandedIDs: 00000000486a00004a6a00004c6a00004e6a0000506a000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1019,7 +1036,7 @@ MonoBehaviour:
   m_ListAreaState:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
-    m_HadKeyboardFocusLastEvent: 1
+    m_HadKeyboardFocusLastEvent: 0
     m_ExpandedInstanceIDs: 747c0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0

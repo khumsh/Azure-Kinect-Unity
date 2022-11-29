@@ -4,10 +4,10 @@ public class main : MonoBehaviour
 {
     // Handler for SkeletalTracking thread.
     public GameObject m_tracker;
-    private SkeletalTrackingProvider m_skeletalTrackingProvider;
+    public SkeletalTrackingProvider m_skeletalTrackingProvider;
     public BackgroundData m_lastFrameData = new BackgroundData();
 
-    private bool camera_start;
+    public bool camera_start;
 
     void Start()
     {
