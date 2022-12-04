@@ -71,10 +71,9 @@ public class RecordTransformHierarchy : MonoBehaviour
 
     }
 
-    public void PlayAnimation()
+    public void PlayAnimation(string animationName)
     {
-        anim.enabled = true;
-        anim.SetTrigger("Play");
+        anim.SetTrigger(animationName);
     }
 
 }
