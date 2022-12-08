@@ -94,7 +94,7 @@ public class PoseSimilarity : MonoBehaviour
         return pose;
     }
     
-    // 코사인 유사도 계산
+    // 코사인 유사도 계산  
     // pose1: azure tracker 포즈 x, y, z 좌표
     // pose2: azure tracker copy 포즈 x, y, z좌표
     // ex) [x1, y1, z1, x2, y2, z2, ..., x32, y32, z32]
