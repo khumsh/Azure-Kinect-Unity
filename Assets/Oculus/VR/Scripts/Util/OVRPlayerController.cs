@@ -148,9 +148,6 @@ public class OVRPlayerController : MonoBehaviour
 	/// </summary>
 	public bool RotationEitherThumbstick = false;
 
-	// !!!
-	public Transform cameraArm; 
-
 	protected CharacterController Controller = null;
 	protected OVRCameraRig CameraRig = null;
 
@@ -288,9 +285,7 @@ public class OVRPlayerController : MonoBehaviour
 			CameraUpdated();
 		}
 
-		// !!!
 		UpdateMovement();
-		//CameraRotation();
 
 		Vector3 moveDirection = Vector3.zero;
 
@@ -356,7 +351,6 @@ public class OVRPlayerController : MonoBehaviour
 
 			if (OVRInput.Get(OVRInput.Button.DpadUp))
 			{
-				Debug.Log("DPadUP!!!");
 				moveForward = true;
 				dpad_move = true;
 
@@ -410,35 +404,28 @@ public class OVRPlayerController : MonoBehaviour
 #endif
 
 			Vector2 primaryAxis = OVRInput.Get(OVRInput.Axis2D.PrimaryThumbstick);
-			Debug.Log("primaryAxis: " + primaryAxis);
 
-
-			cameraArm.transform.rotation = Quaternion.Euler(0.0f, primaryAxis.x * 20, 0.0f);
-			// ! -------------------------
 			// If speed quantization is enabled, adjust the input to the number of fixed speed steps.
-			// if (FixedSpeedSteps > 0)
-			// {
-			// 	primaryAxis.y = Mathf.Round(primaryAxis.y * FixedSpeedSteps) / FixedSpeedSteps;
-			// 	primaryAxis.x = Mathf.Round(primaryAxis.x * FixedSpeedSteps) / FixedSpeedSteps;
-			// }
+			if (FixedSpeedSteps > 0)
+			{
+				primaryAxis.y = Mathf.Round(primaryAxis.y * FixedSpeedSteps) / FixedSpeedSteps;
+				primaryAxis.x = Mathf.Round(primaryAxis.x * FixedSpeedSteps) / FixedSpeedSteps;
+			}
 
-			// if (primaryAxis.y > 0.0f)
-			// 	MoveThrottle += ort * (primaryAxis.y * transform.lossyScale.z * moveInfluence * Vector3.forward);
+			if (primaryAxis.y > 0.0f)
+				MoveThrottle += ort * (primaryAxis.y * transform.lossyScale.z * moveInfluence * Vector3.forward);
 
-			// if (primaryAxis.y < 0.0f)
-			// 	MoveThrottle += ort * (Mathf.Abs(primaryAxis.y) * transform.lossyScale.z * moveInfluence *
-			// 						   BackAndSideDampen * Vector3.back);
+			if (primaryAxis.y < 0.0f)
+				MoveThrottle += ort * (Mathf.Abs(primaryAxis.y) * transform.lossyScale.z * moveInfluence *
+									   BackAndSideDampen * Vector3.back);
 
-			// if (primaryAxis.x < 0.0f)
-			// 	MoveThrottle += ort * (Mathf.Abs(primaryAxis.x) * transform.lossyScale.x * moveInfluence *
-			// 						   BackAndSideDampen * Vector3.left);
+			if (primaryAxis.x < 0.0f)
+				MoveThrottle += ort * (Mathf.Abs(primaryAxis.x) * transform.lossyScale.x * moveInfluence *
+									   BackAndSideDampen * Vector3.left);
 
-			// if (primaryAxis.x > 0.0f)
-			// 	MoveThrottle += ort * (primaryAxis.x * transform.lossyScale.x * moveInfluence * BackAndSideDampen *
-			// 						   Vector3.right);
-			// ! ---------------------------
-
-			
+			if (primaryAxis.x > 0.0f)
+				MoveThrottle += ort * (primaryAxis.x * transform.lossyScale.x * moveInfluence * BackAndSideDampen *
+									   Vector3.right);
 		}
 
 		if (EnableRotation)
@@ -653,25 +640,5 @@ public class OVRPlayerController : MonoBehaviour
 			euler.y = InitialYRotation;
 			transform.rotation = Quaternion.Euler(euler);
 		}
-	}
-	
-
-	private void CameraRotation()
-	{
-		if (OVRInput.Get(OVRInput.Button.DpadUp)) // vr 패드 up
-		{
-			Debug.Log("!!@!@");
-			cameraArm.transform.rotation = Quaternion.Euler(0.0f, 20, 0.0f);
-		}
-
-		Vector2 a = OVRInput.Get(OVRInput.Axis2D.PrimaryThumbstick);
-
-		cameraArm.transform.rotation = Quaternion.Euler(0.0f, a.magnitude, 0.0f);
-
-		// if (OVRInput.Get(OVRInput.Axis2D.PrimaryThumbstick))
-		// {
-		// 	Debug.Log("????????????");
-		// }
-	
 	}
 }
