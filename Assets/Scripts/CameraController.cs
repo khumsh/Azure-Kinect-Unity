@@ -8,11 +8,13 @@ public class CameraController : MonoBehaviour
     [SerializeField] private GameObject LeftCamera;
     [SerializeField] private GameObject RightCamera;
     [SerializeField] private float sensitivity;
+    [SerializeField] private bool vrMode;
 
 
     private Vector3 firstPoint;
     private Vector3 secondPoint;
     private float xAngle;
+    
 
     private bool bMultipleCamera = false;
 
@@ -20,19 +22,31 @@ public class CameraController : MonoBehaviour
     {
         //LookAround();
 
-        if (Input.GetMouseButtonDown(0))
+        if (!vrMode)
         {
-            firstPoint = Input.mousePosition;
-            
-        }
+            if (Input.GetMouseButtonDown(0))
+            {
+                firstPoint = Input.mousePosition;
+                
+            }
 
-        if (Input.GetMouseButton(0))
-        {
-            secondPoint = Input.mousePosition;
-            xAngle = secondPoint.x - firstPoint.x;
-            
-            transform.rotation = Quaternion.Euler(0.0f, xAngle * sensitivity * 0.01f, 0.0f);
+            if (Input.GetMouseButton(0))
+            {
+                secondPoint = Input.mousePosition;
+                xAngle = secondPoint.x - firstPoint.x;
+                
+                cameraArm.transform.rotation = Quaternion.Euler(0.0f, xAngle * sensitivity * 0.01f, 0.0f);
+            }
         }
+        else // VR Mode
+        {
+            if (OVRInput.Get(OVRInput.Button.DpadUp)) // vr 패드 up
+            {
+                Debug.Log("!!@!@");
+                cameraArm.transform.rotation = Quaternion.Euler(0.0f, 20, 0.0f);
+            }
+        }
+        
     }
 
     public void MultipleCameraOnOffButton()
