@@ -93,7 +93,7 @@ public class PoseSimilarity : MonoBehaviour
 
         return pose;
     }
-    
+
     // 코사인 유사도 계산  
     // pose1: azure tracker 포즈 x, y, z 좌표
     // pose2: azure tracker copy 포즈 x, y, z좌표
@@ -108,12 +108,12 @@ public class PoseSimilarity : MonoBehaviour
         float temp2 = 0;
         float temp3 = 0;
 
-        float result_temp = 0;
-        float all_result = 0;
+        float result = 0; // 코사인 유사도의 총합
+        float pure_temp = 0; // result_temp의 한단계 전 총합
+        float true_pure = 0; // 각 벡터의 대한 순수 코사인유사도
 
-        int i = 1;
-
-        while (i < pose1.Length + 1)
+        int i = 0;
+        do
         {
             temp1 = pose1[i] * pose1[i];
             temp2 = pose2[i] * pose2[i];
@@ -125,26 +125,25 @@ public class PoseSimilarity : MonoBehaviour
             pose1Dotpose2 += temp3;
 
             i++;
+            pose1_temp = Mathf.Sqrt(pose1_temp);
+            pose2_temp = Mathf.Sqrt(pose2_temp);
 
-            if (i % 3 == 0)
+            result = pose1Dotpose2 / (pose1_temp * pose2_temp);
+            true_pure += result - pure_temp;
+            pure_temp = result;
+
+
+            if ((i + 1) % 3 == 0)
             {
-                pose1_temp = Mathf.Sqrt(pose1_temp);
-                pose2_temp = Mathf.Sqrt(pose2_temp);
-
-                result_temp = pose1Dotpose2 / (pose1_temp * pose2_temp);
                 // 1개의 스켈레톤을 비교할 때 마다 비교된 스켈레톤의 코사인 유사도 출력
-                return result_temp;
+                return true_pure;
+                true_pure = 0;
             }
-        }
 
-
-        pose1_temp = Mathf.Sqrt(pose1_temp);
-        pose2_temp = Mathf.Sqrt(pose2_temp);
-
-        all_result = pose1Dotpose2 / (pose1_temp * pose2_temp);
+        } while (i < pose1.Length);
 
         //전체 스켈레톤 출력
-        return all_result;
+        return result;
     }
 
     // 코사인 거리 계산
