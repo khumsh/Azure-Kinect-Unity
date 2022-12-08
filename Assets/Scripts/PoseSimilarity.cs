@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PoseSimilarity : MonoBehaviour
 {
+    SpriteRenderer sr;
     public GameObject azureTrackerPose;     // 실시간 트래킹 포즈
     public GameObject modelAvatarPose;      // 모범 포즈
 
@@ -107,9 +108,12 @@ public class PoseSimilarity : MonoBehaviour
         float temp2 = 0;
         float temp3 = 0;
 
-        
+        float result_temp = 0;
+        float all_result = 0;
 
-        for (int i = 0; i < pose1.Length; ++i)
+        int i = 1;
+
+        while (i < pose1.Length + 1)
         {
             temp1 = pose1[i] * pose1[i];
             temp2 = pose2[i] * pose2[i];
@@ -120,21 +124,31 @@ public class PoseSimilarity : MonoBehaviour
 
             pose1Dotpose2 += temp3;
 
+            i++;
 
+            if (i % 3 == 0)
+            {
+                pose1_temp = Mathf.Sqrt(pose1_temp);
+                pose2_temp = Mathf.Sqrt(pose2_temp);
+
+                result_temp = pose1Dotpose2 / (pose1_temp * pose2_temp);
+                // 1개의 스켈레톤을 비교할 때 마다 비교된 스켈레톤의 코사인 유사도 출력
+                return result_temp;
+            }
         }
 
-
-
-        
 
         pose1_temp = Mathf.Sqrt(pose1_temp);
         pose2_temp = Mathf.Sqrt(pose2_temp);
 
-        return pose1Dotpose2 / (pose1_temp * pose2_temp);
+        all_result = pose1Dotpose2 / (pose1_temp * pose2_temp);
 
+        //전체 스켈레톤 출력
+        return all_result;
     }
 
     // 코사인 거리 계산
+
     private float cosineDistanceMatching(float[] pose1, float[] pose2)
     {
         float cosineSim = cosineSimilarity(pose1, pose2);
@@ -142,6 +156,11 @@ public class PoseSimilarity : MonoBehaviour
         return Mathf.Sqrt(2 * (1 - cosineSim));
     }
 
+    private void SkeltonColorChange (float[] pose1, float[] pose2)
+    {
+        cosineDistanceMatching(pose1, pose2);
 
+        sr.color = Color.red;
+    }
 
 }
