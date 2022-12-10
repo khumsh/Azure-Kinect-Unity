@@ -13,7 +13,7 @@ public class PoseSimilarity : MonoBehaviour
 
     private float cosineSimilarityValue = 0;
     private float cosineDistanceValue = 0;
-    private List<string> errorParts;
+    public List<float> errorParts;
     
 
     private string[] bodyParts = 
@@ -60,7 +60,7 @@ public class PoseSimilarity : MonoBehaviour
         azureTrackerPoseXYZ = GetPoseXY(azureTrackerPose);    
         modelAvatarPoseXYZ = GetPoseXY(modelAvatarPose);
 
-        cosineSimilarityValue = cosineSimilarity(azureTrackerPoseXYZ, modelAvatarPoseXYZ);
+        cosineSimilarityValue = cosineSimilarity2(azureTrackerPoseXYZ, modelAvatarPoseXYZ);
         cosineDistanceValue = cosineDistanceMatching(azureTrackerPoseXYZ, modelAvatarPoseXYZ);
 
         Debug.Log("cosineSimilarity = " + cosineSimilarityValue + ", cosineDistance = " + cosineDistanceValue);
@@ -135,8 +135,7 @@ public class PoseSimilarity : MonoBehaviour
 
             if ((i + 1) % 3 == 0)
             {
-                // 1개의 스켈레톤을 비교할 때 마다 비교된 스켈레톤의 코사인 유사도 출력
-                return true_pure;
+                
                 true_pure = 0;
             }
 
@@ -160,6 +159,48 @@ public class PoseSimilarity : MonoBehaviour
         cosineDistanceMatching(pose1, pose2);
 
         sr.color = Color.red;
+    }
+
+    private float cosineSimilarity2(float[] pose1, float[] pose2)
+    {
+        float temp1 = 0;
+        float temp2 = 0;
+        float pose1Dotpose2 = 0;
+
+        float _cosineSim = 0;
+        float temp1Sum = 0;
+        float temp2Sum = 0;
+        float dotSum = 0;
+
+        errorParts.Clear();
+
+        for (int i = 0; i < pose1.Length; ++i)
+        {
+            temp1 += pose1[i] * pose1[i];
+            temp2 += pose2[i] * pose2[i];
+
+            pose1Dotpose2 += pose1[i] * pose2[i];
+
+            if (i != 0 && i % 3 == 0)
+            {
+                _cosineSim = (pose1Dotpose2 - dotSum) / (Mathf.Sqrt(temp1 - temp1Sum) * Mathf.Sqrt(temp2 - temp2Sum));
+                temp1Sum = temp1;
+                temp2Sum = temp2;
+                dotSum = pose1Dotpose2;
+
+                errorParts.Add(_cosineSim);
+            }
+        }
+
+        _cosineSim = (pose1Dotpose2 - dotSum) / (Mathf.Sqrt(temp1 - temp1Sum) * Mathf.Sqrt(temp2 - temp2Sum));
+        errorParts.Add(_cosineSim);
+
+        temp1 = Mathf.Sqrt(temp1);
+        temp2 = Mathf.Sqrt(temp2);
+
+        
+
+        return pose1Dotpose2 / (temp1 * temp2);
     }
 
 }
