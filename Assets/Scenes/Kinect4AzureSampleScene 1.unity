@@ -2860,6 +2860,10 @@ MonoBehaviour:
   - 0
   - 0
   - 0
+  similarBase: 0.95
+  normalColor: {fileID: 2100000, guid: 9437a882cd404054385286d18acd0c5c, type: 2}
+  errorColor: {fileID: 2100000, guid: bd6b6d11c48709d409751661caa7e006, type: 2}
+  bodyPartsSimilarity: []
   errorParts: []
 --- !u!1 &565303839
 GameObject:
@@ -5068,6 +5072,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 4.2248263
       objectReference: {fileID: 0}
+    - target: {fileID: 1922906296, guid: 019b917704c3c29478d778e143d411d2, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1922906296, guid: 019b917704c3c29478d778e143d411d2, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 9437a882cd404054385286d18acd0c5c, type: 2}
     - target: {fileID: 1955530320, guid: 019b917704c3c29478d778e143d411d2, type: 3}
       propertyPath: m_Layer
       value: 2

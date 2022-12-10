@@ -11,10 +11,15 @@ public class PoseSimilarity : MonoBehaviour
     public float[] azureTrackerPoseXYZ = new float[96];
     public float[] modelAvatarPoseXYZ = new float[96];
 
+    [SerializeField] float similarBase; // 부위별 동작 유사 기준치 (이거보다 낮으면 유사하지 않음 판정)
+    [SerializeField] Material normalColor;
+    [SerializeField] Material errorColor;
+
+
     private float cosineSimilarityValue = 0;
     private float cosineDistanceValue = 0;
-    public List<float> errorParts;
-    
+    public List<float> bodyPartsSimilarity;
+    public List<string> errorParts;
 
     private string[] bodyParts = 
     new string[]
@@ -64,6 +69,8 @@ public class PoseSimilarity : MonoBehaviour
         cosineDistanceValue = cosineDistanceMatching(azureTrackerPoseXYZ, modelAvatarPoseXYZ);
 
         Debug.Log("cosineSimilarity = " + cosineSimilarityValue + ", cosineDistance = " + cosineDistanceValue);
+
+        SkeltonColorChange(azureTrackerPose);
     }
 
     private float[] GetPoseXY(GameObject tracker)
@@ -154,11 +161,25 @@ public class PoseSimilarity : MonoBehaviour
         return Mathf.Sqrt(2 * (1 - cosineSim));
     }
 
-    private void SkeltonColorChange (float[] pose1, float[] pose2)
+    private void SkeltonColorChange (GameObject tracker)
     {
-        cosineDistanceMatching(pose1, pose2);
+        //cosineDistanceMatching(pose1, pose2);
 
-        sr.color = Color.red;
+        //sr.color = Color.red;
+
+        Transform trackerPose = tracker.transform.GetChild(0);
+
+        for (int i = 0; i < bodyPartsSimilarity.Count; ++i)
+        {
+            if (bodyPartsSimilarity[i] < similarBase)
+            {
+                trackerPose.GetChild(i).GetChild(0).GetComponent<MeshRenderer>().material = errorColor;
+            }
+            else
+            {
+                trackerPose.GetChild(i).GetChild(0).GetComponent<MeshRenderer>().material = normalColor;
+            }
+        }
     }
 
     private float cosineSimilarity2(float[] pose1, float[] pose2)
@@ -172,7 +193,7 @@ public class PoseSimilarity : MonoBehaviour
         float temp2Sum = 0;
         float dotSum = 0;
 
-        errorParts.Clear();
+        bodyPartsSimilarity.Clear();
 
         for (int i = 0; i < pose1.Length; ++i)
         {
@@ -188,16 +209,15 @@ public class PoseSimilarity : MonoBehaviour
                 temp2Sum = temp2;
                 dotSum = pose1Dotpose2;
 
-                errorParts.Add(_cosineSim);
+                bodyPartsSimilarity.Add(_cosineSim);
             }
         }
 
         _cosineSim = (pose1Dotpose2 - dotSum) / (Mathf.Sqrt(temp1 - temp1Sum) * Mathf.Sqrt(temp2 - temp2Sum));
-        errorParts.Add(_cosineSim);
+        bodyPartsSimilarity.Add(_cosineSim);
 
         temp1 = Mathf.Sqrt(temp1);
         temp2 = Mathf.Sqrt(temp2);
-
         
 
         return pose1Dotpose2 / (temp1 * temp2);
