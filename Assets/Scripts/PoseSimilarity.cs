@@ -19,7 +19,7 @@ public class PoseSimilarity : MonoBehaviour
     private float cosineSimilarityValue = 0;
     private float cosineDistanceValue = 0;
     public List<float> bodyPartsSimilarity;
-    private int checkParts = 26; // 자식 25개까지 확인 (총 32개인데 귀 코 같은 부위 빼면 25까지)
+    private int checkParts = 26; // 자식 26개까지 확인 (총 32개인데 귀 코 같은 부위 빼면 25까지)
     
     void Start()
     {
@@ -48,6 +48,7 @@ public class PoseSimilarity : MonoBehaviour
 
 
         float[] pose = new float[checkParts * 3];
+        float SqrtSum = 0;
         
         Transform trackerPose = tracker.transform.GetChild(0);
 
@@ -58,6 +59,13 @@ public class PoseSimilarity : MonoBehaviour
             pose[q] = tracker.transform.GetChild(0).GetChild(p).transform.localPosition.x;
             pose[q+1] = tracker.transform.GetChild(0).GetChild(p).transform.localPosition.y;
             pose[q+2] = tracker.transform.GetChild(0).GetChild(p).transform.localPosition.z;
+
+            SqrtSum = Mathf.Sqrt(pose[q]*pose[q] + pose[q+1]*pose[q+1] + pose[q+2]*pose[q+2]);
+
+            // 정규화
+            pose[q] /= SqrtSum;
+            pose[q+1] /= SqrtSum;
+            pose[q+2] /= SqrtSum;
 
             q += 3;
             p += 1;
