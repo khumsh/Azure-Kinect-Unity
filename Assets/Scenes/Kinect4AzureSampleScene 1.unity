@@ -2860,11 +2860,10 @@ MonoBehaviour:
   - 0
   - 0
   - 0
-  similarBase: 0.95
+  similarBase: 0.97
   normalColor: {fileID: 2100000, guid: 9437a882cd404054385286d18acd0c5c, type: 2}
   errorColor: {fileID: 2100000, guid: bd6b6d11c48709d409751661caa7e006, type: 2}
   bodyPartsSimilarity: []
-  errorParts: []
 --- !u!1 &565303839
 GameObject:
   m_ObjectHideFlags: 0
@@ -4240,10 +4239,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 1.5172884
       objectReference: {fileID: 0}
+    - target: {fileID: 162193770, guid: 019b917704c3c29478d778e143d411d2, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 9437a882cd404054385286d18acd0c5c, type: 2}
     - target: {fileID: 172131782, guid: 019b917704c3c29478d778e143d411d2, type: 3}
       propertyPath: m_Layer
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 172131785, guid: 019b917704c3c29478d778e143d411d2, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 9437a882cd404054385286d18acd0c5c, type: 2}
     - target: {fileID: 210279052, guid: 019b917704c3c29478d778e143d411d2, type: 3}
       propertyPath: m_Name
       value: Kinect4AzureTracker
@@ -4400,6 +4407,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 383776977, guid: 019b917704c3c29478d778e143d411d2, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 9437a882cd404054385286d18acd0c5c, type: 2}
     - target: {fileID: 430270598, guid: 019b917704c3c29478d778e143d411d2, type: 3}
       propertyPath: m_Layer
       value: 2
@@ -4420,6 +4431,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 433970494, guid: 019b917704c3c29478d778e143d411d2, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 9437a882cd404054385286d18acd0c5c, type: 2}
     - target: {fileID: 439313444, guid: 019b917704c3c29478d778e143d411d2, type: 3}
       propertyPath: m_Layer
       value: 2
@@ -4696,6 +4711,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 972057448, guid: 019b917704c3c29478d778e143d411d2, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 9437a882cd404054385286d18acd0c5c, type: 2}
     - target: {fileID: 1072855856, guid: 019b917704c3c29478d778e143d411d2, type: 3}
       propertyPath: m_Layer
       value: 2
@@ -5024,6 +5043,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 1873992192, guid: 019b917704c3c29478d778e143d411d2, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 9437a882cd404054385286d18acd0c5c, type: 2}
     - target: {fileID: 1881499707, guid: 019b917704c3c29478d778e143d411d2, type: 3}
       propertyPath: m_Layer
       value: 2
