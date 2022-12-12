@@ -8,6 +8,11 @@ using UnityEngine;
 
 public class SkeletalTrackingProvider : BackgroundDataProvider
 {
+    public Device device;
+    public Capture sensorCapture;
+    public Frame frame;
+
+    
     bool readFirstFrame = false;
     TimeSpan initialTimestamp;
 
@@ -20,6 +25,7 @@ public class SkeletalTrackingProvider : BackgroundDataProvider
 
     public Stream RawDataLoggingFile = null;
 
+
     protected override void RunBackgroundThreadAsync(int id, CancellationToken token)
     {
         try
@@ -29,7 +35,7 @@ public class SkeletalTrackingProvider : BackgroundDataProvider
             // Buffer allocations.
             BackgroundData currentFrameData = new BackgroundData();
             // Open device.
-            using (Device device = Device.Open(id))
+            using (device = Device.Open(id))
             {
                 device.StartCameras(new DeviceConfiguration()
                 {
@@ -42,20 +48,21 @@ public class SkeletalTrackingProvider : BackgroundDataProvider
                 UnityEngine.Debug.Log("Open K4A device successful. id " + id + "sn:" + device.SerialNum);
 
                 var deviceCalibration = device.GetCalibration();
+                
 
                 using (Tracker tracker = Tracker.Create(deviceCalibration, new TrackerConfiguration() { ProcessingMode = TrackerProcessingMode.Cuda, SensorOrientation = SensorOrientation.Default }))
                 {
                     UnityEngine.Debug.Log("Body tracker created.");
                     while (!token.IsCancellationRequested)
                     {
-                        using (Capture sensorCapture = device.GetCapture())
+                        using (sensorCapture = device.GetCapture())
                         {
                             // Queue latest frame from the sensor.
                             tracker.EnqueueCapture(sensorCapture);
                         }
 
                         // Try getting latest tracker frame.
-                        using (Frame frame = tracker.PopResult(TimeSpan.Zero, throwOnTimeout: false))
+                        using (frame = tracker.PopResult(TimeSpan.Zero, throwOnTimeout: false))
                         {
                             if (frame == null)
                             {

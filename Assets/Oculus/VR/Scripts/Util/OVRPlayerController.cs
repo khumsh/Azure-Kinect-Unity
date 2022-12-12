@@ -148,6 +148,8 @@ public class OVRPlayerController : MonoBehaviour
 	/// </summary>
 	public bool RotationEitherThumbstick = false;
 
+	public Transform tracker;
+
 	protected CharacterController Controller = null;
 	protected OVRCameraRig CameraRig = null;
 
@@ -458,28 +460,39 @@ public class OVRPlayerController : MonoBehaviour
 
 			if (SnapRotation)
 			{
-				if (OVRInput.Get(OVRInput.Button.SecondaryThumbstickLeft) ||
-					(RotationEitherThumbstick && OVRInput.Get(OVRInput.Button.PrimaryThumbstickLeft)))
+				// !
+				Vector3 trackerRotation = new Vector3(tracker.rotation.x, tracker.rotation.y, tracker.rotation.z);
+
+				if (OVRInput.Get(OVRInput.Button.SecondaryThumbstickLeft))// ||
+				//	(RotationEitherThumbstick && OVRInput.Get(OVRInput.Button.PrimaryThumbstickLeft)))
 				{
-					if (ReadyToSnapTurn)
-					{
-						euler.y -= RotationRatchet;
-						ReadyToSnapTurn = false;
-					}
+					// if (ReadyToSnapTurn)
+					// {
+					// 	euler.y -= RotationRatchet;
+					// 	ReadyToSnapTurn = false;
+					// }
+					
+					
+					trackerRotation.y -= 2.5f;
+					tracker.Rotate(trackerRotation);
+
 				}
 				else if (OVRInput.Get(OVRInput.Button.SecondaryThumbstickRight) ||
 					(RotationEitherThumbstick && OVRInput.Get(OVRInput.Button.PrimaryThumbstickRight)))
 				{
-					if (ReadyToSnapTurn)
-					{
-						euler.y += RotationRatchet;
-						ReadyToSnapTurn = false;
-					}
+					// if (ReadyToSnapTurn)
+					// {
+					// 	euler.y += RotationRatchet;
+					// 	ReadyToSnapTurn = false;
+					// }
+
+					trackerRotation.y += 2.5f;
+					tracker.Rotate(trackerRotation);
 				}
-				else
-				{
-					ReadyToSnapTurn = true;
-				}
+				// else
+				// {
+				// 	ReadyToSnapTurn = true;
+				// }
 			}
 			else
 			{

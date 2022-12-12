@@ -31,6 +31,7 @@ public class main : MonoBehaviour
                         m_tracker.GetComponent<TrackerHandler>().updateTracker(m_lastFrameData);
                     }
                 }
+
             }
         }
     }
@@ -52,5 +53,7 @@ public class main : MonoBehaviour
         //tracker ids needed for when there are two trackers
         const int TRACKER_ID = 0;
         m_skeletalTrackingProvider = new SkeletalTrackingProvider(TRACKER_ID);
+
+        
     }
 }

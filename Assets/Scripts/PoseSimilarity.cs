@@ -136,15 +136,18 @@ public class PoseSimilarity : MonoBehaviour
 
         Transform trackerPose = tracker.transform.GetChild(0);
 
+
         for (int i = 0; i < bodyPartsSimilarity.Count; ++i)
         {
             if (bodyPartsSimilarity[i] < similarBase)
             {
                 trackerPose.GetChild(partIndex[i]).GetChild(0).GetComponent<MeshRenderer>().material = errorColor;
+
             }
             else
             {
                 trackerPose.GetChild(partIndex[i]).GetChild(0).GetComponent<MeshRenderer>().material = normalColor;
+
             }
 
             // if (cosineDistanceMatching(bodyPartsSimilarity[i]) < cosineDistanceBase)
@@ -152,7 +155,7 @@ public class PoseSimilarity : MonoBehaviour
             // else
             //     trackerPose.GetChild(partIndex[i]).GetChild(0).GetComponent<MeshRenderer>().material = normalColor;
 
-
+            
         }
 
 
